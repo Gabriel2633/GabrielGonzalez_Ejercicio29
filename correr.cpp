@@ -45,7 +45,7 @@ void funcion(double rho,double ten,int N,double dn,int Nt, double dt,string file
     
     for(int i=0;i<N;i++)
     {
-      outfile << xi[i][0] << " ";
+      outfile << xi[0][i] << " ";
     }
       outfile << "\n";
     
@@ -55,20 +55,21 @@ void funcion(double rho,double ten,int N,double dn,int Nt, double dt,string file
     {
         for(int j=1;j<N-1;j++)
         {
-            xi[2][j]=2*xi[1][i]-xi[0][i]+ratio*(xi[1][i+1]+xi[1][i-1]-2*xi[1][i]);
+            xi[2][j]=2*xi[1][j]-xi[0][j]+ratio*(xi[1][j+1]+xi[1][j-1]-2*xi[1][j]);
         }
-         
+        
+        for(int j=0;j<N;j++)
+        {
+          outfile << xi[1][j] << " ";
+        }
+        outfile << "\n";    
+          
         for(int j=0;j<N;j++)
         {
             xi[0][j]=xi[1][j];
             xi[1][j]=xi[2][j];
         }  
-          
-        for(int i=0;i<N;i++)
-        {
-          outfile << xi[i][1] << " ";
-        }
-      outfile << "\n";       
+                
     }
     
     outfile.close();
